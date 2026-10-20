@@ -1,0 +1,31 @@
+/* Для a > 0 и b >= 0 найти наибольший общий делитель по алгоритму Евклида: gcd(a, 0) = a; gcd(a, b) = gcd(b, a % b).
+
+При нарушении ограничений на входные данные сообщите об ошибке.
+
+Проверки: gcd(12, 8) → 4, gcd(17, 5) → 1, gcd(21, 7) → 7, gcd(9, 0) →  */
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        
+        if (a <= 0 || b < 0) {
+            System.out.println("Error");
+            return;
+        }
+        
+        System.out.println(gcd(a, b));
+    }
+    
+    static int gcd(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+}
