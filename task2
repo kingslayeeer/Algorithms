@@ -1,0 +1,34 @@
+/* Задача 6. Рекуррентная последовательность с другими коэффициентами
+Вычислите рекурсивно последовательность по формуле:
+
+a(0) = 1, a(1) = 2, a(n) = 3 * a(n - 1) - a(n - 2) для n >= 2.
+
+Знак минус является частью формулы. Предусмотрите базовые случаи n = 0 и n = 1.
+
+Проверки: последовательность начинается как 1, 2, 5, 13, 34; поэтому a(2) = 5, a(3) = 13, a(4) = 34. */
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        
+        if (n < 0) {
+            System.out.println("Error");
+            return;
+        }
+        
+        System.out.println(a(n));
+    }
+    
+    static int a(int n) {
+        if (n == 0) {
+            return 1;
+        }
+        if (n == 1) {
+            return 2;
+        }
+        return 3 * a(n - 1) - a(n - 2);
+    }
+}
