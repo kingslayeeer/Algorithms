@@ -1,0 +1,64 @@
+/* Условие
+Для заданного n вывести все правильные скобочные последовательности, состоящие из n пар круглых скобок.
+
+Для n = 3 результат:
+
+((()))
+(()())
+(())()
+()(())
+()()()
+План решения
+На каждом шаге можно добавить открывающую скобку, если их ещё меньше n. Закрывающую скобку можно добавить, только если открывающих уже больше, чем закрывающих. Когда длина строки равна 2 * n, последовательность готова.
+
+ 
+Пример метода: 
+
+static void generateBrackets(
+String current, // текущая строка
+int opened, // количество открытых скобок
+int closed, // количество закрытых скобок
+int n // количество пар
+) */
+
+
+
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+
+    static void generateBrackets(String current, int opened, int closed, int n, List<String> result) {
+        if (current.length() == 2 * n) {
+            result.add(current);
+            return;
+        }
+
+        if (opened < n) {
+            generateBrackets(current + "(", opened + 1, closed, n, result);
+        }
+
+        if (closed < opened) {
+            generateBrackets(current + ")", opened, closed + 1, n, result);
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        if (sc.hasNextInt()) {
+            int n = sc.nextInt();
+            if (n < 0) {
+                System.out.println("Error");
+                return;
+            }
+
+            List<String> result = new ArrayList<>();
+            generateBrackets("", 0, 0, n, result);
+
+            for (String s : result) {
+                System.out.println(s);
+            }
+        }
+    }
+}
